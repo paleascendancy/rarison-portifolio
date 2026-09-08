@@ -1,0 +1,323 @@
+<!doctype html>
+<html lang="pt-BR" data-theme="dark">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#07111f">
+  <meta name="description" content="RK OS — dashboard SaaS e portfólio tech interativo de Rarison Keven.">
+  <title>RK OS — SaaS Dashboard / Tech Portfolio</title>
+
+  <!-- Tailwind via CDN: adequado para este protótipo estático no GitHub Pages. -->
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Chart.js: gráficos dinâmicos via CDN. -->
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+
+  <!-- Lucide Icons: ícones SVG leves e escaláveis. -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar" id="sidebar" aria-label="Navegação principal">
+      <div class="brand-block">
+        <div class="brand-mark">RK</div>
+        <div>
+          <strong>RK OS</strong>
+          <span>Portfolio System</span>
+        </div>
+      </div>
+
+      <nav class="nav-stack">
+        <button class="nav-item active" data-view="overview">
+          <i data-lucide="layout-dashboard"></i><span>Overview</span>
+        </button>
+        <button class="nav-item" data-view="projects">
+          <i data-lucide="blocks"></i><span>Projects</span>
+        </button>
+        <button class="nav-item" data-view="stack">
+          <i data-lucide="code-2"></i><span>Stack</span>
+        </button>
+        <button class="nav-item" data-view="activity">
+          <i data-lucide="activity"></i><span>Activity</span>
+        </button>
+      </nav>
+
+      <div class="sidebar-foot">
+        <div class="status-card">
+          <div class="status-dot"></div>
+          <div>
+            <strong>System online</strong>
+            <span>GitHub Pages</span>
+          </div>
+        </div>
+        <a class="ghost-link" href="../">← voltar à vitrine</a>
+      </div>
+    </aside>
+
+    <main class="main">
+      <header class="topbar">
+        <div class="topbar-left">
+          <button class="icon-btn mobile-only" id="menuBtn" aria-label="Abrir menu">
+            <i data-lucide="menu"></i>
+          </button>
+          <div>
+            <span class="eyebrow">Developer Workspace</span>
+            <h1 id="pageTitle">Overview</h1>
+          </div>
+        </div>
+
+        <div class="topbar-actions">
+          <label class="search-box" aria-label="Buscar">
+            <i data-lucide="search"></i>
+            <input id="searchInput" type="search" placeholder="Buscar projetos, stack...">
+            <kbd>⌘K</kbd>
+          </label>
+
+          <button class="icon-btn" id="themeBtn" aria-label="Alternar tema">
+            <i data-lucide="sun-moon"></i>
+          </button>
+
+          <div class="profile-chip">
+            <div class="avatar">RK</div>
+            <div class="profile-copy">
+              <strong>Rarison Keven</strong>
+              <span>Front-end / Builder</span>
+            </div>
+          </div>
+        </div>
+      </header>
+
+      <section class="content">
+        <div class="view active" id="overview">
+          <section class="hero-panel glass">
+            <div>
+              <span class="eyebrow">RK / Product & Front-end Lab</span>
+              <h2>Construindo interfaces que parecem produto, não apenas páginas.</h2>
+              <p>
+                Este dashboard concentra projetos, stack, atividade e métricas em uma interface SaaS
+                responsiva feita para rodar totalmente no GitHub Pages.
+              </p>
+              <div class="hero-actions">
+                <button class="primary-btn" data-view-jump="projects">
+                  Ver projetos <i data-lucide="arrow-up-right"></i>
+                </button>
+                <a class="secondary-btn" href="https://github.com/callebydev" target="_blank" rel="noopener noreferrer">
+                  GitHub <i data-lucide="github"></i>
+                </a>
+              </div>
+            </div>
+            <div class="hero-orbit" aria-hidden="true">
+              <div class="orb-ring ring-a"></div>
+              <div class="orb-ring ring-b"></div>
+              <div class="orb-core">RK</div>
+            </div>
+          </section>
+
+          <section class="metric-grid" aria-label="Métricas principais">
+            <article class="metric-card glass">
+              <div class="metric-head">
+                <span>Projetos ativos</span>
+                <i data-lucide="rocket"></i>
+              </div>
+              <strong data-counter="6">0</strong>
+              <small>+2 neste ciclo</small>
+            </article>
+            <article class="metric-card glass">
+              <div class="metric-head">
+                <span>Experimentos UI</span>
+                <i data-lucide="sparkles"></i>
+              </div>
+              <strong data-counter="5">0</strong>
+              <small>scroll · 3D · editorial</small>
+            </article>
+            <article class="metric-card glass">
+              <div class="metric-head">
+                <span>Stack atual</span>
+                <i data-lucide="layers-3"></i>
+              </div>
+              <strong data-counter="7">0</strong>
+              <small>fundamentos + backend</small>
+            </article>
+            <article class="metric-card glass">
+              <div class="metric-head">
+                <span>Status</span>
+                <i data-lucide="radio"></i>
+              </div>
+              <strong class="status-text">Online</strong>
+              <small>aberto a novos projetos</small>
+            </article>
+          </section>
+
+          <section class="dashboard-grid">
+            <article class="panel glass chart-panel">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow">Activity</span>
+                  <h3>Progresso de construção</h3>
+                </div>
+                <select id="chartRange" class="select-control" aria-label="Período do gráfico">
+                  <option value="7">7 dias</option>
+                  <option value="14">14 dias</option>
+                  <option value="30">30 dias</option>
+                </select>
+              </div>
+              <div class="chart-wrap">
+                <canvas id="activityChart" aria-label="Gráfico de atividade"></canvas>
+              </div>
+            </article>
+
+            <article class="panel glass">
+              <div class="panel-head">
+                <div>
+                  <span class="eyebrow">Focus</span>
+                  <h3>Prioridades atuais</h3>
+                </div>
+                <i data-lucide="target"></i>
+              </div>
+
+              <div class="focus-list">
+                <div class="focus-row">
+                  <div><strong>JavaScript</strong><span>DOM, estado e interações</span></div>
+                  <b>82%</b>
+                </div>
+                <div class="progress-track"><span style="width:82%"></span></div>
+
+                <div class="focus-row">
+                  <div><strong>UI Systems</strong><span>layout, motion, responsividade</span></div>
+                  <b>76%</b>
+                </div>
+                <div class="progress-track"><span style="width:76%"></span></div>
+
+                <div class="focus-row">
+                  <div><strong>Backend</strong><span>Supabase e integrações</span></div>
+                  <b>58%</b>
+                </div>
+                <div class="progress-track"><span style="width:58%"></span></div>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <div class="view" id="projects">
+          <section class="section-intro">
+            <span class="eyebrow">Selected work</span>
+            <h2>Projetos como evidência de construção.</h2>
+            <p>Cases, protótipos e sistemas que mostram evolução técnica e direção de produto.</p>
+          </section>
+
+          <section class="project-grid" id="projectGrid">
+            <article class="project-card glass searchable" data-search="pale ascendancy comunidade serviços web html css">
+              <div class="project-top">
+                <span class="project-index">01</span>
+                <span class="badge">Live</span>
+              </div>
+              <div class="project-art art-a"></div>
+              <h3>Pale Ascendancy</h3>
+              <p>Ecossistema web voltado a serviços criativos, comunidade e organização de fluxos.</p>
+              <div class="tag-row"><span>HTML</span><span>CSS</span><span>UX</span></div>
+            </article>
+
+            <article class="project-card glass searchable" data-search="edith ia automação supabase assistente artificial intelligence">
+              <div class="project-top">
+                <span class="project-index">02</span>
+                <span class="badge warning">Building</span>
+              </div>
+              <div class="project-art art-b"></div>
+              <h3>EDITH</h3>
+              <p>Assistente pessoal de IA em evolução para estudos, programação e automação.</p>
+              <div class="tag-row"><span>AI</span><span>Supabase</span><span>Automation</span></div>
+            </article>
+
+            <article class="project-card glass searchable" data-search="rk labs scroll motion css 3d javascript ui experimental">
+              <div class="project-top">
+                <span class="project-index">03</span>
+                <span class="badge">Lab</span>
+              </div>
+              <div class="project-art art-c"></div>
+              <h3>RK Labs</h3>
+              <p>Experimentos de scrollytelling, CSS 3D, motion e composição interativa.</p>
+              <div class="tag-row"><span>JS</span><span>CSS 3D</span><span>Motion</span></div>
+            </article>
+          </section>
+        </div>
+
+        <div class="view" id="stack">
+          <section class="section-intro">
+            <span class="eyebrow">Technology map</span>
+            <h2>Stack por camada, não por hype.</h2>
+            <p>Fundamentos primeiro; ferramentas entram quando ajudam a resolver um problema concreto.</p>
+          </section>
+
+          <section class="stack-grid">
+            <article class="stack-card glass searchable" data-search="frontend html css javascript responsividade">
+              <i data-lucide="monitor-smartphone"></i>
+              <h3>Front-end</h3>
+              <p>HTML semântico, CSS responsivo, JavaScript ES6+, DOM e microinterações.</p>
+            </article>
+            <article class="stack-card glass searchable" data-search="backend supabase auth database api">
+              <i data-lucide="database"></i>
+              <h3>Backend</h3>
+              <p>Supabase para autenticação, dados e funções conectadas aos projetos.</p>
+            </article>
+            <article class="stack-card glass searchable" data-search="github git pages versionamento deploy">
+              <i data-lucide="git-branch"></i>
+              <h3>Delivery</h3>
+              <p>GitHub para versionamento, branches de experimento e publicação no Pages.</p>
+            </article>
+            <article class="stack-card glass searchable" data-search="ai inteligência artificial automação edith">
+              <i data-lucide="bot"></i>
+              <h3>AI / Automation</h3>
+              <p>Assistentes, memória, pesquisa, automação e integração entre ferramentas.</p>
+            </article>
+          </section>
+        </div>
+
+        <div class="view" id="activity">
+          <section class="section-intro">
+            <span class="eyebrow">Build log</span>
+            <h2>Evolução registrada como sistema.</h2>
+            <p>Uma timeline curta do que está sendo construído e refinado.</p>
+          </section>
+
+          <section class="timeline">
+            <article class="timeline-item glass">
+              <span class="timeline-dot"></span>
+              <div>
+                <small>Atual</small>
+                <h3>Dashboard SaaS / Tech Portfolio</h3>
+                <p>Interface modular com sidebar, gráficos, tabs, busca e tema alternável.</p>
+              </div>
+            </article>
+            <article class="timeline-item glass">
+              <span class="timeline-dot"></span>
+              <div>
+                <small>Experimento</small>
+                <h3>Scroll Experience</h3>
+                <p>Scrollytelling com sticky section, estados visuais e narrativa sincronizada.</p>
+              </div>
+            </article>
+            <article class="timeline-item glass">
+              <span class="timeline-dot"></span>
+              <div>
+                <small>Experimento</small>
+                <h3>Spatial Interface</h3>
+                <p>Perspectiva 3D em CSS e resposta ao ponteiro sem biblioteca gráfica.</p>
+              </div>
+            </article>
+          </section>
+        </div>
+
+        <div class="empty-search" id="emptySearch" hidden>
+          <i data-lucide="search-x"></i>
+          <h3>Nenhum resultado</h3>
+          <p>Tente outro termo.</p>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
