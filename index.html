@@ -100,14 +100,21 @@ h1 .ghost{display:block;color:transparent;-webkit-text-stroke:1px rgba(220,233,2
 .meta b{display:block;font-size:10px;margin-bottom:5px}
 .meta span{display:block;font-size:9px;color:var(--muted-2)}
 
-.art-stage{min-height:520px;display:grid;place-items:center;perspective:1200px}
-.artifact{width:min(420px,74vw);aspect-ratio:1/1;position:relative;transform-style:preserve-3d;transform:rotateX(62deg) rotateZ(-34deg) rotateY(7deg);transition:transform var(--fast) ease-out}
-.plate{position:absolute;inset:15%;clip-path:polygon(12% 0,86% 6%,100% 29%,91% 91%,28% 100%,0 72%);border:1px solid rgba(220,236,244,.24);background:linear-gradient(145deg,rgba(222,239,248,.18),rgba(255,255,255,.025) 54%,rgba(210,10,70,.08));box-shadow:inset 0 0 50px rgba(255,255,255,.045),0 36px 100px rgba(0,0,0,.4)}
-.p2{transform:translate3d(28px,-18px,-70px) scale(.92);opacity:.42}.p3{transform:translate3d(-30px,18px,-140px) scale(.82);opacity:.2}.p4{transform:translateZ(82px) scale(.56);background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(210,10,70,.1))}
-.core{position:absolute;inset:43%;border-radius:50%;background:#eef6fa;box-shadow:0 0 60px 18px rgba(222,239,248,.34),0 0 120px 42px rgba(210,10,70,.09);transform:translateZ(135px)}
-.orbit{position:absolute;inset:8%;border:1px solid rgba(255,255,255,.12);border-radius:50%;transform:rotateX(72deg) translateZ(50px);animation:orbit 16s linear infinite}
-.orbit:after{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 16px var(--red)}
-@keyframes orbit{to{transform:rotateX(72deg) rotateZ(360deg) translateZ(50px)}}
+.art-stage{min-height:min(56vh,500px);position:relative}
+.scroll3d-wrap{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
+#scroll3d{display:block;width:100%;height:100%;filter:drop-shadow(0 28px 72px rgba(0,0,0,.42))}
+.scroll3d-vignette{position:absolute;inset:0;pointer-events:none;background:
+radial-gradient(circle at 72% 48%,rgba(140,154,255,.07),transparent 29%),
+linear-gradient(90deg,rgba(5,7,10,.72) 0%,rgba(5,7,10,.18) 45%,transparent 68%)}
+main,footer{position:relative;z-index:2}
+.nav{z-index:300}
+.scene>.shell{position:relative;z-index:3}
+@media(max-width:940px){
+  .scroll3d-vignette{background:radial-gradient(circle at 50% 56%,rgba(140,154,255,.06),transparent 34%)}
+}
+@media(max-width:620px){
+  .scroll3d-wrap{opacity:.88}
+}
 
 .split-head{display:grid;grid-template-columns:.58fr 1.42fr;gap:54px;margin-bottom:56px;align-items:start}
 .split-head h2,.about-copy h2,.contact h2{margin:0;font-size:clamp(42px,5.6vw,78px);line-height:.96;letter-spacing:-.055em;font-weight:560}
@@ -237,7 +244,7 @@ h1 .ghost{font-family:var(--font-display);font-style:italic;letter-spacing:-.035
 .meta span{font-size:9.5px;line-height:1.45;color:#849097}
 .hero-grid{grid-template-columns:1.05fr .95fr;gap:48px}
 .art-stage{min-height:min(56vh,500px)}
-.artifact{width:min(390px,67vw)}
+
 .split-head{grid-template-columns:.48fr 1.52fr;gap:42px;margin-bottom:28px}
 .split-head h2,.about-copy h2,.contact h2{
   font-family:var(--font-display);font-weight:400;
@@ -300,7 +307,7 @@ h1 .ghost{font-family:var(--font-display);font-style:italic;letter-spacing:-.035
   .hero-lead{font-size:14px}
   .meta b{font-size:10px}.meta span{font-size:9px}
   .art-stage{min-height:300px}
-  .artifact{width:72vw}
+  
   .split-head h2,.about-copy h2{font-size:clamp(39px,12.5vw,58px)}
   .scene-label{font-size:9.5px}
   .project-index,.tag,.tech-card .n,.service .n{font-size:9px}
@@ -317,6 +324,10 @@ h1 .ghost{font-family:var(--font-display);font-style:italic;letter-spacing:-.035
 </head>
 <body>
 <div class="site-bg"></div><div id="progress"></div>
+<div class="scroll3d-wrap" aria-hidden="true">
+  <canvas id="scroll3d"></canvas>
+  <div class="scroll3d-vignette"></div>
+</div>
 
 <nav class="nav">
   <a class="brand" href="#inicio"><span class="brand-mark"></span>Rarison Keven</a>
@@ -346,11 +357,7 @@ h1 .ghost{font-family:var(--font-display);font-style:italic;letter-spacing:-.035
         <div class="meta"><b>Status</b><span>Disponível para projetos</span></div>
       </div>
     </div>
-    <div class="art-stage reveal">
-      <div class="artifact" id="artifact">
-        <div class="plate p3"></div><div class="plate p2"></div><div class="plate"></div><div class="plate p4"></div><div class="core"></div><div class="orbit"></div>
-      </div>
-    </div>
+    <div class="art-stage reveal" id="artStage" aria-hidden="true"></div>
   </div>
 </section>
 
@@ -438,7 +445,6 @@ h1 .ghost{font-family:var(--font-display);font-style:italic;letter-spacing:-.035
 
 <script>
 const progress=document.getElementById("progress");
-const artifact=document.getElementById("artifact");
 function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+"%"}
 addEventListener("scroll",updateProgress,{passive:true});updateProgress();
 
@@ -447,15 +453,217 @@ const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
 }),{threshold:.12});
 document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
-if(artifact&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
-  const hero=document.querySelector(".hero");
-  hero.addEventListener("pointermove",e=>{
-    const r=hero.getBoundingClientRect();
-    const x=(e.clientX-r.left)/r.width-.5;
-    const y=(e.clientY-r.top)/r.height-.5;
-    artifact.style.transform=`rotateX(${62-y*8}deg) rotateZ(${-34+x*6}deg) rotateY(${7+x*11}deg)`;
-  });
-  hero.addEventListener("pointerleave",()=>artifact.style.transform="rotateX(62deg) rotateZ(-34deg) rotateY(7deg)");
+
+</script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
+<script type="module">
+import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
+
+const canvas=document.getElementById("scroll3d");
+const reduced=matchMedia("(prefers-reduced-motion: reduce)").matches;
+const mobile=matchMedia("(max-width: 700px)").matches;
+
+if(canvas){
+  try{
+    const renderer=new THREE.WebGLRenderer({
+      canvas,
+      alpha:true,
+      antialias:!mobile,
+      powerPreference:"high-performance"
+    });
+    renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.1:1.55));
+    renderer.outputColorSpace=THREE.SRGBColorSpace;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure=1.08;
+
+    const scene=new THREE.Scene();
+    const camera=new THREE.PerspectiveCamera(34,innerWidth/innerHeight,.1,100);
+    camera.position.set(0,.25,9.5);
+
+    const rig=new THREE.Group();
+    scene.add(rig);
+
+    scene.add(new THREE.HemisphereLight(0xe8f2f7,0x09070d,1.35));
+    const key=new THREE.PointLight(0xe8f4fb,24,24); key.position.set(4.5,4.4,6); scene.add(key);
+    const rim=new THREE.PointLight(0x91a3ff,17,20); rim.position.set(-3.6,-1.6,4); scene.add(rim);
+    const redLight=new THREE.PointLight(0xd20a46,7,15); redLight.position.set(2.4,-2.7,3); scene.add(redLight);
+
+    const shape=new THREE.Shape();
+    shape.moveTo(-1.75,-.78);
+    shape.lineTo(-1.18,.93);
+    shape.lineTo(.75,1.02);
+    shape.lineTo(1.78,.22);
+    shape.lineTo(1.22,-.94);
+    shape.lineTo(-.74,-1.06);
+    shape.closePath();
+
+    const geo=new THREE.ExtrudeGeometry(shape,{
+      depth:.08,
+      bevelEnabled:true,
+      bevelSize:.04,
+      bevelThickness:.03,
+      bevelSegments:2,
+      steps:1
+    });
+    geo.center();
+
+    const mats=[
+      new THREE.MeshPhysicalMaterial({color:0xdce9ef,roughness:.18,metalness:.03,transparent:true,opacity:.32,transmission:.5,thickness:.85,ior:1.22,clearcoat:.65,clearcoatRoughness:.18}),
+      new THREE.MeshPhysicalMaterial({color:0xbac8ff,roughness:.22,metalness:.04,transparent:true,opacity:.22,transmission:.34,thickness:.72,ior:1.2,clearcoat:.48}),
+      new THREE.MeshPhysicalMaterial({color:0xe8f0f4,roughness:.15,metalness:.02,transparent:true,opacity:.38,transmission:.52,thickness:.82,ior:1.24,clearcoat:.72})
+    ];
+
+    const layers=[];
+    const base=[
+      {p:[0,1.28,.18],r:[-.08,.08,-.04],s:.78},
+      {p:[-.34,.43,.04],r:[.03,-.08,.035],s:1.02},
+      {p:[.23,-.43,-.04],r:[-.03,.055,-.028],s:.97},
+      {p:[-.08,-1.28,-.18],r:[.055,-.04,.04],s:.88}
+    ];
+
+    base.forEach((cfg,i)=>{
+      const g=new THREE.Group();
+      const mesh=new THREE.Mesh(geo,mats[i%mats.length]);
+      g.add(mesh);
+      const edges=new THREE.LineSegments(
+        new THREE.EdgesGeometry(geo,28),
+        new THREE.LineBasicMaterial({color:0xdfeaf1,transparent:true,opacity:i===2?.46:.28})
+      );
+      g.add(edges);
+      g.position.fromArray(cfg.p);
+      g.rotation.set(...cfg.r);
+      g.scale.setScalar(cfg.s);
+      g.userData={base:cfg,i};
+      rig.add(g); layers.push(g);
+    });
+
+    const orb=new THREE.Mesh(
+      new THREE.SphereGeometry(.28,28,22),
+      new THREE.MeshStandardMaterial({color:0xf8fcff,emissive:0xbfd4ff,emissiveIntensity:3.1,roughness:.06})
+    );
+    orb.position.set(.45,2.3,.6); rig.add(orb);
+
+    const ring=new THREE.Mesh(
+      new THREE.TorusGeometry(2.9,.012,8,180),
+      new THREE.MeshBasicMaterial({color:0xc6d4ff,transparent:true,opacity:.25})
+    );
+    ring.rotation.set(1.12,.15,.08); rig.add(ring);
+
+    const ring2=new THREE.Mesh(
+      new THREE.TorusGeometry(2.35,.009,8,160),
+      new THREE.MeshBasicMaterial({color:0xe7eef3,transparent:true,opacity:.13})
+    );
+    ring2.rotation.set(.35,1.08,.5); rig.add(ring2);
+
+    const count=mobile?65:120;
+    const pos=new Float32Array(count*3);
+    for(let i=0;i<count;i++){
+      const a=Math.random()*Math.PI*2;
+      const rr=2+Math.random()*2.5;
+      pos[i*3]=Math.cos(a)*rr;
+      pos[i*3+1]=(Math.random()-.5)*5;
+      pos[i*3+2]=(Math.random()-.5)*2.7;
+    }
+    const pg=new THREE.BufferGeometry();
+    pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
+    const particles=new THREE.Points(pg,new THREE.PointsMaterial({
+      color:0xd8e4ff,size:mobile?.018:.023,transparent:true,opacity:.45,
+      depthWrite:false,blending:THREE.AdditiveBlending
+    }));
+    rig.add(particles);
+
+    const states={
+      inicio:{x:2.55,y:-.05,z:0,rx:-.04,ry:.12,rz:.03,s:.95,cam:9.5,spread:1},
+      projetos:{x:1.8,y:.02,z:0,rx:.12,ry:.72,rz:-.06,s:.86,cam:9.0,spread:1.22},
+      stack:{x:-2.15,y:.05,z:0,rx:-.16,ry:-.48,rz:.08,s:.78,cam:8.65,spread:.76},
+      servicos:{x:2.2,y:-.02,z:0,rx:.2,ry:1.18,rz:-.08,s:.72,cam:8.25,spread:1.36},
+      sobre:{x:-2.1,y:-.1,z:0,rx:-.09,ry:-1.04,rz:.04,s:.82,cam:8.9,spread:.9},
+      contato:{x:.1,y:.18,z:0,rx:.15,ry:.1,rz:0,s:.64,cam:7.8,spread:1.55}
+    };
+
+    function applyState(st){
+      if(!window.gsap) return;
+      gsap.to(rig.position,{x:st.x,y:st.y,z:st.z,duration:1.35,ease:"power3.inOut"});
+      gsap.to(rig.rotation,{x:st.rx,y:st.ry,z:st.rz,duration:1.35,ease:"power3.inOut"});
+      gsap.to(rig.scale,{x:st.s,y:st.s,z:st.s,duration:1.35,ease:"power3.inOut"});
+      gsap.to(camera.position,{z:st.cam,duration:1.35,ease:"power3.inOut"});
+      layers.forEach((g,i)=>{
+        const b=g.userData.base.p;
+        gsap.to(g.position,{
+          x:b[0]*st.spread,
+          y:b[1]*st.spread,
+          z:b[2]*st.spread+(i-1.5)*(st.spread-1)*.12,
+          duration:1.25+i*.05,
+          ease:"power3.inOut"
+        });
+      });
+    }
+
+    if(window.gsap&&window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      ["inicio","projetos","stack","servicos","sobre","contato"].forEach(id=>{
+        const el=document.getElementById(id);
+        if(!el) return;
+        ScrollTrigger.create({
+          trigger:el,
+          start:"top 55%",
+          end:"bottom 45%",
+          onEnter:()=>applyState(states[id]),
+          onEnterBack:()=>applyState(states[id])
+        });
+      });
+    }
+
+    applyState(states.inicio);
+
+    let tx=0,ty=0,mx=0,my=0;
+    if(!reduced){
+      addEventListener("pointermove",e=>{
+        tx=(e.clientX/innerWidth-.5)*2;
+        ty=(e.clientY/innerHeight-.5)*2;
+      },{passive:true});
+    }
+
+    const clock=new THREE.Clock();
+    function render(){
+      requestAnimationFrame(render);
+      const t=clock.getElapsedTime();
+      mx+=(tx-mx)*.035;
+      my+=(ty-my)*.035;
+
+      if(!reduced){
+        layers.forEach((g,i)=>{
+          g.rotation.z=g.userData.base.r[2]+Math.sin(t*.38+i*1.3)*.014;
+          g.rotation.x+=Math.sin(t*.32+i)*.00035;
+        });
+        orb.position.y=2.3+Math.sin(t*1.8)*.07;
+        orb.scale.setScalar(1+Math.sin(t*2.1)*.06);
+        ring.rotation.z+=.0018;
+        ring2.rotation.z-=.0011;
+        particles.rotation.y+=.00045;
+        rig.rotation.y+=mx*.0007;
+        rig.rotation.x+=-my*.00045;
+      }
+
+      camera.lookAt(0,0,0);
+      renderer.render(scene,camera);
+    }
+    render();
+
+    function resize(){
+      renderer.setSize(innerWidth,innerHeight,false);
+      camera.aspect=innerWidth/innerHeight;
+      camera.updateProjectionMatrix();
+      renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.1:1.55));
+    }
+    resize();
+    addEventListener("resize",resize,{passive:true});
+
+  }catch(err){
+    canvas.style.display="none";
+  }
 }
 </script>
 </body>
