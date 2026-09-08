@@ -97,34 +97,14 @@ h1 .ghost{display:block;color:transparent;-webkit-text-stroke:1px rgba(220,233,2
 .meta b{display:block;font-size:10px;margin-bottom:5px}
 .meta span{display:block;font-size:9px;color:var(--muted-2)}
 
-.art-stage{min-height:520px;display:grid;place-items:center;perspective:1400px;position:relative;isolation:isolate}
-.art-stage:before{content:"";position:absolute;width:min(520px,82vw);height:min(520px,82vw);border-radius:50%;background:radial-gradient(circle,rgba(143,160,255,.13),rgba(210,10,70,.045) 36%,transparent 72%);filter:blur(24px);animation:auraBreath 5.8s ease-in-out infinite;z-index:-1}
-.artifact{--mx:0deg;--my:0deg;--scrollLift:0px;width:min(430px,76vw);aspect-ratio:1/1;position:relative;transform-style:preserve-3d;transform:translateY(var(--scrollLift)) rotateX(calc(61deg + var(--my))) rotateZ(calc(-34deg + var(--mx))) rotateY(8deg);transition:transform .18s ease-out;filter:drop-shadow(0 34px 70px rgba(0,0,0,.46))}
-.artifact:before{content:"";position:absolute;inset:18%;border-radius:50%;background:radial-gradient(circle,rgba(222,239,248,.22),rgba(111,93,255,.08) 45%,transparent 72%);filter:blur(28px);transform:translateZ(20px);animation:coreAura 4.2s ease-in-out infinite}
-.artifact:after{content:"";position:absolute;left:16%;right:16%;bottom:9%;height:13%;border-radius:50%;background:radial-gradient(ellipse,rgba(124,142,255,.28),rgba(210,10,70,.1) 44%,transparent 75%);filter:blur(20px);transform:rotateX(84deg) translateZ(-120px)}
-.plate{position:absolute;inset:15%;clip-path:polygon(12% 0,86% 6%,100% 29%,91% 91%,28% 100%,0 72%);border:1px solid rgba(220,236,244,.27);background:linear-gradient(145deg,rgba(226,239,247,.22),rgba(142,151,255,.055) 48%,rgba(210,10,70,.09));box-shadow:inset 0 0 52px rgba(255,255,255,.05),0 26px 70px rgba(0,0,0,.28),0 0 24px rgba(132,151,255,.08);backdrop-filter:blur(8px);will-change:transform;animation:plateFloat 6.4s ease-in-out infinite}
-.plate:after{content:"";position:absolute;inset:0;background:linear-gradient(120deg,transparent 24%,rgba(255,255,255,.16) 42%,transparent 58%);transform:translateX(-120%);animation:glassSweep 7s ease-in-out infinite}
-.p2{transform:translate3d(34px,-24px,-78px) scale(.93);opacity:.55;animation-delay:-1.2s}.p3{transform:translate3d(-34px,26px,-152px) scale(.84);opacity:.3;animation-delay:-2.4s}.p4{transform:translate3d(4px,-6px,92px) scale(.56);background:linear-gradient(145deg,rgba(255,255,255,.32),rgba(139,129,255,.1) 52%,rgba(210,10,70,.13));box-shadow:0 0 38px rgba(157,166,255,.1);animation-delay:-.7s}
-.core{position:absolute;inset:42.2%;border-radius:50%;background:radial-gradient(circle at 38% 34%,#fff,#e7f2f7 46%,#b7c8ff 70%);box-shadow:0 0 24px 6px rgba(236,246,255,.86),0 0 72px 28px rgba(131,148,255,.34),0 0 130px 48px rgba(210,10,70,.12);transform:translateZ(145px);animation:corePulse 2.8s ease-in-out infinite}
-.core:after{content:"";position:absolute;inset:-36%;border-radius:50%;border:1px solid rgba(225,238,246,.28);animation:coreRing 2.8s ease-out infinite}
-.orbit{position:absolute;inset:7%;border:1px solid rgba(211,226,237,.2);border-radius:50%;transform:rotateX(72deg) translateZ(58px);animation:orbit 12s linear infinite;box-shadow:inset 0 0 12px rgba(122,142,255,.08)}
-.orbit:after{content:"";position:absolute;top:-5px;left:50%;width:9px;height:9px;border-radius:50%;background:#ff4a7e;box-shadow:0 0 12px #ff4a7e,0 0 26px rgba(255,74,126,.8)}
-.orbit.two{inset:13%;border-color:rgba(139,157,255,.16);transform:rotateY(67deg) rotateZ(17deg) translateZ(24px);animation:orbitTwo 17s linear infinite reverse}
-.orbit.two:after{background:#dce9ef;box-shadow:0 0 12px #dce9ef,0 0 26px rgba(220,233,239,.7);width:7px;height:7px}
-.beam{position:absolute;left:50%;top:5%;width:28%;height:38%;transform:translateX(-50%) translateZ(116px) rotateX(-61deg);transform-origin:center top;background:linear-gradient(to bottom,rgba(235,244,255,.24),rgba(154,168,255,.06) 52%,transparent);clip-path:polygon(39% 0,61% 0,100% 100%,0 100%);filter:blur(3px);opacity:.7;animation:beamPulse 4.6s ease-in-out infinite;pointer-events:none}
-.dust{position:absolute;inset:0;transform-style:preserve-3d;pointer-events:none}
-.dust i{position:absolute;width:3px;height:3px;border-radius:50%;background:#dfeaff;box-shadow:0 0 10px rgba(173,190,255,.9);opacity:.55;animation:dustFloat var(--d,7s) ease-in-out infinite}
-.dust i:nth-child(1){left:16%;top:24%;--d:6.2s}.dust i:nth-child(2){left:78%;top:19%;--d:8s}.dust i:nth-child(3){left:13%;top:71%;--d:7.3s}.dust i:nth-child(4){left:84%;top:65%;--d:6.8s}.dust i:nth-child(5){left:57%;top:10%;--d:7.7s}.dust i:nth-child(6){left:69%;top:82%;--d:8.4s}.dust i:nth-child(7){left:28%;top:84%;--d:7.1s}.dust i:nth-child(8){left:91%;top:39%;--d:6.5s}
-@keyframes orbit{to{transform:rotateX(72deg) rotateZ(360deg) translateZ(58px)}}
-@keyframes orbitTwo{to{transform:rotateY(67deg) rotateZ(377deg) translateZ(24px)}}
-@keyframes plateFloat{0%,100%{translate:0 0}50%{translate:0 -7px}}
-@keyframes glassSweep{0%,55%{transform:translateX(-130%)}72%,100%{transform:translateX(130%)}}
-@keyframes corePulse{0%,100%{scale:1;filter:brightness(1)}50%{scale:1.14;filter:brightness(1.18)}}
-@keyframes coreRing{0%{scale:.72;opacity:.8}100%{scale:1.5;opacity:0}}
-@keyframes auraBreath{0%,100%{scale:.96;opacity:.65}50%{scale:1.08;opacity:1}}
-@keyframes coreAura{0%,100%{scale:.9;opacity:.7}50%{scale:1.12;opacity:1}}
-@keyframes beamPulse{0%,100%{opacity:.38;filter:blur(4px)}50%{opacity:.8;filter:blur(2px)}}
-@keyframes dustFloat{0%,100%{transform:translate3d(0,0,0) scale(.8);opacity:.25}50%{transform:translate3d(8px,-16px,42px) scale(1.35);opacity:.8}}
+.art-stage{min-height:520px;display:grid;place-items:center;perspective:1200px}
+.artifact{width:min(420px,74vw);aspect-ratio:1/1;position:relative;transform-style:preserve-3d;transform:rotateX(62deg) rotateZ(-34deg) rotateY(7deg);transition:transform var(--fast) ease-out}
+.plate{position:absolute;inset:15%;clip-path:polygon(12% 0,86% 6%,100% 29%,91% 91%,28% 100%,0 72%);border:1px solid rgba(220,236,244,.24);background:linear-gradient(145deg,rgba(222,239,248,.18),rgba(255,255,255,.025) 54%,rgba(210,10,70,.08));box-shadow:inset 0 0 50px rgba(255,255,255,.045),0 36px 100px rgba(0,0,0,.4)}
+.p2{transform:translate3d(28px,-18px,-70px) scale(.92);opacity:.42}.p3{transform:translate3d(-30px,18px,-140px) scale(.82);opacity:.2}.p4{transform:translateZ(82px) scale(.56);background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(210,10,70,.1))}
+.core{position:absolute;inset:43%;border-radius:50%;background:#eef6fa;box-shadow:0 0 60px 18px rgba(222,239,248,.34),0 0 120px 42px rgba(210,10,70,.09);transform:translateZ(135px)}
+.orbit{position:absolute;inset:8%;border:1px solid rgba(255,255,255,.12);border-radius:50%;transform:rotateX(72deg) translateZ(50px);animation:orbit 16s linear infinite}
+.orbit:after{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 16px var(--red)}
+@keyframes orbit{to{transform:rotateX(72deg) rotateZ(360deg) translateZ(50px)}}
 
 .split-head{display:grid;grid-template-columns:.58fr 1.42fr;gap:54px;margin-bottom:56px;align-items:start}
 .split-head h2,.about-copy h2,.contact h2{margin:0;font-size:clamp(42px,5.6vw,78px);line-height:.96;letter-spacing:-.055em;font-weight:560}
@@ -253,10 +233,7 @@ footer{width:min(var(--content),calc(100% - 40px));margin:auto;padding:28px 0 36
     </div>
     <div class="art-stage reveal">
       <div class="artifact" id="artifact">
-        <div class="beam"></div>
-        <div class="plate p3"></div><div class="plate p2"></div><div class="plate"></div><div class="plate p4"></div>
-        <div class="core"></div><div class="orbit"></div><div class="orbit two"></div>
-        <div class="dust"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+        <div class="plate p3"></div><div class="plate p2"></div><div class="plate"></div><div class="plate p4"></div><div class="core"></div><div class="orbit"></div>
       </div>
     </div>
   </div>
@@ -357,35 +334,13 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 if(artifact&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
   const hero=document.querySelector(".hero");
-  const layers=[...artifact.querySelectorAll(".plate")];
-  let tx=0,ty=0,cx=0,cy=0;
   hero.addEventListener("pointermove",e=>{
     const r=hero.getBoundingClientRect();
-    tx=((e.clientX-r.left)/r.width-.5);
-    ty=((e.clientY-r.top)/r.height-.5);
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    artifact.style.transform=`rotateX(${62-y*8}deg) rotateZ(${-34+x*6}deg) rotateY(${7+x*11}deg)`;
   });
-  hero.addEventListener("pointerleave",()=>{tx=0;ty=0});
-  function animateArtifact(){
-    cx+=(tx-cx)*.06;cy+=(ty-cy)*.06;
-    artifact.style.setProperty("--mx",(cx*7).toFixed(2)+"deg");
-    artifact.style.setProperty("--my",(-cy*8).toFixed(2)+"deg");
-    layers.forEach((layer,i)=>{
-      const depth=[1.6,1.1,.7,2.2][i]||1;
-      layer.style.marginLeft=(cx*9*depth).toFixed(1)+"px";
-      layer.style.marginTop=(cy*7*depth).toFixed(1)+"px";
-    });
-    requestAnimationFrame(animateArtifact);
-  }
-  animateArtifact();
-
-  const updateArtifactScroll=()=>{
-    const r=hero.getBoundingClientRect();
-    const p=Math.max(0,Math.min(1,-r.top/Math.max(1,r.height)));
-    artifact.style.setProperty("--scrollLift",(-p*22).toFixed(1)+"px");
-    artifact.style.filter=`drop-shadow(0 ${34+p*16}px ${70+p*24}px rgba(0,0,0,.46)) saturate(${1+p*.16})`;
-  };
-  addEventListener("scroll",updateArtifactScroll,{passive:true});
-  updateArtifactScroll();
+  hero.addEventListener("pointerleave",()=>artifact.style.transform="rotateX(62deg) rotateZ(-34deg) rotateY(7deg)");
 }
 </script>
 </body>
