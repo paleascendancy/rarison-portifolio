@@ -455,6 +455,9 @@ document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
 
 
 </script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/gsap.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/gsap@3.13.0/dist/ScrollTrigger.min.js"></script>
+
 <script type="module">
 import * as THREE from "https://cdn.jsdelivr.net/npm/three@0.180.0/build/three.module.js";
 
@@ -467,194 +470,197 @@ if(canvas){
     const renderer=new THREE.WebGLRenderer({
       canvas,
       alpha:true,
-      antialias:false,
-      powerPreference:"low-power"
+      antialias:!mobile,
+      powerPreference:"high-performance"
     });
-    renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?.82:1.05));
+    renderer.setPixelRatio(Math.min(devicePixelRatio,mobile?1.1:1.55));
     renderer.outputColorSpace=THREE.SRGBColorSpace;
+    renderer.toneMapping=THREE.ACESFilmicToneMapping;
+    renderer.toneMappingExposure=1.08;
 
     const scene=new THREE.Scene();
-    const camera=new THREE.PerspectiveCamera(35,innerWidth/innerHeight,.1,60);
-    camera.position.set(0,.2,9.3);
+    const camera=new THREE.PerspectiveCamera(34,innerWidth/innerHeight,.1,100);
+    camera.position.set(0,.25,9.5);
 
     const rig=new THREE.Group();
     scene.add(rig);
 
-    scene.add(new THREE.HemisphereLight(0xe7f1f5,0x09070d,1.25));
-    const key=new THREE.DirectionalLight(0xe8f3f8,1.65);
-    key.position.set(3,4,5);
-    scene.add(key);
+    scene.add(new THREE.HemisphereLight(0xe8f2f7,0x09070d,1.35));
+    const key=new THREE.PointLight(0xe8f4fb,24,24); key.position.set(4.5,4.4,6); scene.add(key);
+    const rim=new THREE.PointLight(0x91a3ff,17,20); rim.position.set(-3.6,-1.6,4); scene.add(rim);
+    const redLight=new THREE.PointLight(0xd20a46,7,15); redLight.position.set(2.4,-2.7,3); scene.add(redLight);
 
     const shape=new THREE.Shape();
-    shape.moveTo(-1.7,-.75);
-    shape.lineTo(-1.12,.9);
-    shape.lineTo(.72,.98);
-    shape.lineTo(1.72,.2);
-    shape.lineTo(1.18,-.9);
-    shape.lineTo(-.7,-1.02);
+    shape.moveTo(-1.75,-.78);
+    shape.lineTo(-1.18,.93);
+    shape.lineTo(.75,1.02);
+    shape.lineTo(1.78,.22);
+    shape.lineTo(1.22,-.94);
+    shape.lineTo(-.74,-1.06);
     shape.closePath();
 
-    const geo=new THREE.ShapeGeometry(shape);
+    const geo=new THREE.ExtrudeGeometry(shape,{
+      depth:.08,
+      bevelEnabled:true,
+      bevelSize:.04,
+      bevelThickness:.03,
+      bevelSegments:2,
+      steps:1
+    });
+    geo.center();
 
     const mats=[
-      new THREE.MeshStandardMaterial({color:0xdce9ef,roughness:.42,metalness:.08,transparent:true,opacity:.28,side:THREE.DoubleSide}),
-      new THREE.MeshStandardMaterial({color:0xbac8ff,roughness:.5,metalness:.06,transparent:true,opacity:.19,side:THREE.DoubleSide}),
-      new THREE.MeshStandardMaterial({color:0xe7eef2,roughness:.38,metalness:.05,transparent:true,opacity:.32,side:THREE.DoubleSide})
+      new THREE.MeshPhysicalMaterial({color:0xdce9ef,roughness:.18,metalness:.03,transparent:true,opacity:.32,transmission:.5,thickness:.85,ior:1.22,clearcoat:.65,clearcoatRoughness:.18}),
+      new THREE.MeshPhysicalMaterial({color:0xbac8ff,roughness:.22,metalness:.04,transparent:true,opacity:.22,transmission:.34,thickness:.72,ior:1.2,clearcoat:.48}),
+      new THREE.MeshPhysicalMaterial({color:0xe8f0f4,roughness:.15,metalness:.02,transparent:true,opacity:.38,transmission:.52,thickness:.82,ior:1.24,clearcoat:.72})
     ];
 
+    const layers=[];
     const base=[
-      {p:[0,1.22,.18],r:[-.1,.08,-.04],s:.78},
-      {p:[-.28,.4,.04],r:[.03,-.08,.035],s:1},
-      {p:[.2,-.4,-.04],r:[-.03,.05,-.025],s:.95},
-      {p:[-.07,-1.2,-.16],r:[.05,-.04,.04],s:.86}
+      {p:[0,1.28,.18],r:[-.08,.08,-.04],s:.78},
+      {p:[-.34,.43,.04],r:[.03,-.08,.035],s:1.02},
+      {p:[.23,-.43,-.04],r:[-.03,.055,-.028],s:.97},
+      {p:[-.08,-1.28,-.18],r:[.055,-.04,.04],s:.88}
     ];
 
-    const layers=base.map((cfg,i)=>{
+    base.forEach((cfg,i)=>{
       const g=new THREE.Group();
       const mesh=new THREE.Mesh(geo,mats[i%mats.length]);
       g.add(mesh);
       const edges=new THREE.LineSegments(
-        new THREE.EdgesGeometry(geo),
-        new THREE.LineBasicMaterial({color:0xdfeaf1,transparent:true,opacity:i===2?.4:.22})
+        new THREE.EdgesGeometry(geo,28),
+        new THREE.LineBasicMaterial({color:0xdfeaf1,transparent:true,opacity:i===2?.46:.28})
       );
       g.add(edges);
-      g.position.set(...cfg.p);
+      g.position.fromArray(cfg.p);
       g.rotation.set(...cfg.r);
       g.scale.setScalar(cfg.s);
-      g.userData={base:cfg};
-      rig.add(g);
-      return g;
+      g.userData={base:cfg,i};
+      rig.add(g); layers.push(g);
     });
 
     const orb=new THREE.Mesh(
-      new THREE.SphereGeometry(.26,18,14),
-      new THREE.MeshBasicMaterial({color:0xf4fbff})
+      new THREE.SphereGeometry(.28,28,22),
+      new THREE.MeshStandardMaterial({color:0xf8fcff,emissive:0xbfd4ff,emissiveIntensity:3.1,roughness:.06})
     );
-    orb.position.set(.42,2.18,.55);
-    rig.add(orb);
+    orb.position.set(.45,2.3,.6); rig.add(orb);
 
     const ring=new THREE.Mesh(
-      new THREE.TorusGeometry(2.72,.011,6,84),
-      new THREE.MeshBasicMaterial({color:0xc6d4ff,transparent:true,opacity:.2})
+      new THREE.TorusGeometry(2.9,.012,8,180),
+      new THREE.MeshBasicMaterial({color:0xc6d4ff,transparent:true,opacity:.25})
     );
-    ring.rotation.set(1.1,.14,.08);
-    rig.add(ring);
+    ring.rotation.set(1.12,.15,.08); rig.add(ring);
 
-    const particleCount=mobile?18:32;
-    const pos=new Float32Array(particleCount*3);
-    for(let i=0;i<particleCount;i++){
+    const ring2=new THREE.Mesh(
+      new THREE.TorusGeometry(2.35,.009,8,160),
+      new THREE.MeshBasicMaterial({color:0xe7eef3,transparent:true,opacity:.13})
+    );
+    ring2.rotation.set(.35,1.08,.5); rig.add(ring2);
+
+    const count=mobile?65:120;
+    const pos=new Float32Array(count*3);
+    for(let i=0;i<count;i++){
       const a=Math.random()*Math.PI*2;
-      const rr=2+Math.random()*2.1;
+      const rr=2+Math.random()*2.5;
       pos[i*3]=Math.cos(a)*rr;
-      pos[i*3+1]=(Math.random()-.5)*4.4;
-      pos[i*3+2]=(Math.random()-.5)*2.1;
+      pos[i*3+1]=(Math.random()-.5)*5;
+      pos[i*3+2]=(Math.random()-.5)*2.7;
     }
     const pg=new THREE.BufferGeometry();
     pg.setAttribute("position",new THREE.BufferAttribute(pos,3));
-    const particles=new THREE.Points(
-      pg,
-      new THREE.PointsMaterial({color:0xd9e5ff,size:.018,transparent:true,opacity:.32,depthWrite:false})
-    );
+    const particles=new THREE.Points(pg,new THREE.PointsMaterial({
+      color:0xd8e4ff,size:mobile?.018:.023,transparent:true,opacity:.45,
+      depthWrite:false,blending:THREE.AdditiveBlending
+    }));
     rig.add(particles);
 
-    const fixedX=mobile?.55:2.15;
     const states={
-      inicio:{rx:-.04,ry:.12,rz:.03,s:.94,cam:9.3,spread:1},
-      projetos:{rx:.08,ry:.42,rz:-.04,s:.9,cam:9.1,spread:1.14},
-      stack:{rx:-.1,ry:-.28,rz:.05,s:.86,cam:9,spread:.86},
-      servicos:{rx:.12,ry:.72,rz:-.05,s:.84,cam:8.9,spread:1.22},
-      sobre:{rx:-.06,ry:-.55,rz:.03,s:.88,cam:9.05,spread:.94},
-      contato:{rx:.08,ry:.08,rz:0,s:.78,cam:8.7,spread:1.3}
+      inicio:{x:2.55,y:-.05,z:0,rx:-.04,ry:.12,rz:.03,s:.95,cam:9.5,spread:1},
+      projetos:{x:1.8,y:.02,z:0,rx:.12,ry:.72,rz:-.06,s:.86,cam:9.0,spread:1.22},
+      stack:{x:-2.15,y:.05,z:0,rx:-.16,ry:-.48,rz:.08,s:.78,cam:8.65,spread:.76},
+      servicos:{x:2.2,y:-.02,z:0,rx:.2,ry:1.18,rz:-.08,s:.72,cam:8.25,spread:1.36},
+      sobre:{x:-2.1,y:-.1,z:0,rx:-.09,ry:-1.04,rz:.04,s:.82,cam:8.9,spread:.9},
+      contato:{x:.1,y:.18,z:0,rx:.15,ry:.1,rz:0,s:.64,cam:7.8,spread:1.55}
     };
 
-    const target={
-      x:fixedX,y:-.02,z:0,
-      rx:states.inicio.rx,ry:states.inicio.ry,rz:states.inicio.rz,
-      s:states.inicio.s,cam:states.inicio.cam,spread:states.inicio.spread
-    };
-
-    function setState(id){
-      const st=states[id];
-      if(!st) return;
-      target.rx=st.rx;target.ry=st.ry;target.rz=st.rz;
-      target.s=st.s;target.cam=st.cam;target.spread=st.spread;
+    function applyState(st){
+      if(!window.gsap) return;
+      gsap.to(rig.position,{x:st.x,y:st.y,z:st.z,duration:1.35,ease:"power3.inOut"});
+      gsap.to(rig.rotation,{x:st.rx,y:st.ry,z:st.rz,duration:1.35,ease:"power3.inOut"});
+      gsap.to(rig.scale,{x:st.s,y:st.s,z:st.s,duration:1.35,ease:"power3.inOut"});
+      gsap.to(camera.position,{z:st.cam,duration:1.35,ease:"power3.inOut"});
+      layers.forEach((g,i)=>{
+        const b=g.userData.base.p;
+        gsap.to(g.position,{
+          x:b[0]*st.spread,
+          y:b[1]*st.spread,
+          z:b[2]*st.spread+(i-1.5)*(st.spread-1)*.12,
+          duration:1.25+i*.05,
+          ease:"power3.inOut"
+        });
+      });
     }
 
-    const sectionObserver=new IntersectionObserver(entries=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting) setState(e.target.id);
+    if(window.gsap&&window.ScrollTrigger){
+      gsap.registerPlugin(ScrollTrigger);
+      ["inicio","projetos","stack","servicos","sobre","contato"].forEach(id=>{
+        const el=document.getElementById(id);
+        if(!el) return;
+        ScrollTrigger.create({
+          trigger:el,
+          start:"top 55%",
+          end:"bottom 45%",
+          onEnter:()=>applyState(states[id]),
+          onEnterBack:()=>applyState(states[id])
+        });
       });
-    },{rootMargin:"-42% 0px -42% 0px",threshold:0});
+    }
 
-    ["inicio","projetos","stack","servicos","sobre","contato"].forEach(id=>{
-      const el=document.getElementById(id);
-      if(el) sectionObserver.observe(el);
-    });
+    applyState(states.inicio);
 
-    let mx=0,my=0,tx=0,ty=0;
-    if(!reduced&&!mobile){
+    let tx=0,ty=0,mx=0,my=0;
+    if(!reduced){
       addEventListener("pointermove",e=>{
         tx=(e.clientX/innerWidth-.5)*2;
         ty=(e.clientY/innerHeight-.5)*2;
       },{passive:true});
     }
 
-    let last=0;
-    function render(now){
+    const clock=new THREE.Clock();
+    function render(){
       requestAnimationFrame(render);
-      if(document.hidden) return;
-      if(now-last<33) return;
-      last=now;
-
-      mx+=(tx-mx)*.045;
-      my+=(ty-my)*.045;
-
-      rig.position.x+=(target.x-rig.position.x)*.075;
-      rig.position.y+=(target.y-rig.position.y)*.075;
-      rig.rotation.x+=(target.rx-rig.rotation.x)*.07;
-      rig.rotation.y+=(target.ry-rig.rotation.y)*.07;
-      rig.rotation.z+=(target.rz-rig.rotation.z)*.07;
-
-      const currentScale=rig.scale.x+(target.s-rig.scale.x)*.07;
-      rig.scale.setScalar(currentScale);
-      camera.position.z+=(target.cam-camera.position.z)*.07;
-
-      layers.forEach((g,i)=>{
-        const b=g.userData.base;
-        const txp=b.p[0]*target.spread;
-        const typ=b.p[1]*target.spread;
-        const tzp=b.p[2]*target.spread+(i-1.5)*(target.spread-1)*.08;
-        g.position.x+=(txp-g.position.x)*.08;
-        g.position.y+=(typ-g.position.y)*.08;
-        g.position.z+=(tzp-g.position.z)*.08;
-
-        if(!reduced){
-          g.rotation.z=b.r[2]+Math.sin(now*.00022+i)*.008;
-        }
-      });
+      const t=clock.getElapsedTime();
+      mx+=(tx-mx)*.035;
+      my+=(ty-my)*.035;
 
       if(!reduced){
-        orb.position.y=2.18+Math.sin(now*.00125)*.045;
-        ring.rotation.z+=.0012;
-        particles.rotation.y+=.00022;
-        rig.rotation.y+=mx*.00018;
-        rig.rotation.x+=-my*.00012;
+        layers.forEach((g,i)=>{
+          g.rotation.z=g.userData.base.r[2]+Math.sin(t*.38+i*1.3)*.014;
+          g.rotation.x+=Math.sin(t*.32+i)*.00035;
+        });
+        orb.position.y=2.3+Math.sin(t*1.8)*.07;
+        orb.scale.setScalar(1+Math.sin(t*2.1)*.06);
+        ring.rotation.z+=.0018;
+        ring2.rotation.z-=.0011;
+        particles.rotation.y+=.00045;
+        rig.rotation.y+=mx*.0007;
+        rig.rotation.x+=-my*.00045;
       }
 
       camera.lookAt(0,0,0);
       renderer.render(scene,camera);
     }
-    requestAnimationFrame(render);
+    render();
 
     function resize(){
       renderer.setSize(innerWidth,innerHeight,false);
-      renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?.82:1.05));
       camera.aspect=innerWidth/innerHeight;
       camera.updateProjectionMatrix();
-      target.x=innerWidth<700?.55:2.15;
+      renderer.setPixelRatio(Math.min(devicePixelRatio,innerWidth<700?1.1:1.55));
     }
     resize();
     addEventListener("resize",resize,{passive:true});
+
   }catch(err){
     canvas.style.display="none";
   }
