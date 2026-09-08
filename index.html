@@ -1,8 +1,347 @@
-<!doctype html><html lang="pt-BR"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="theme-color" content="#05070a"><title>Rarison Keven — Web Developer</title><meta name="description" content="Rarison Keven — desenvolvimento web, landing pages, portfólios e reparos de sites."><style>
-:root{--bg:#05070a;--txt:#f2f5f7;--muted:#9aa5ad;--line:rgba(255,255,255,.1);--ice:#dce8ef;--red:#d20a46}*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;background:var(--bg);color:var(--txt);font-family:Inter,system-ui,-apple-system,Segoe UI,sans-serif;overflow-x:hidden}a{color:inherit;text-decoration:none}.bg{position:fixed;inset:0;z-index:-2;background:radial-gradient(900px 520px at 75% 7%,rgba(202,226,239,.12),transparent 68%),radial-gradient(700px 520px at 18% 44%,rgba(210,10,70,.1),transparent 70%),linear-gradient(#080b10,#030507 62%,#05070a)}#progress{position:fixed;top:0;left:0;height:2px;width:0;background:linear-gradient(90deg,var(--ice),var(--red));z-index:200}nav{position:fixed;left:50%;top:14px;transform:translateX(-50%);z-index:100;width:min(1120px,calc(100% - 22px));display:flex;justify-content:space-between;align-items:center;padding:10px 12px 10px 16px;border:1px solid rgba(255,255,255,.08);border-radius:18px;background:rgba(5,7,10,.62);backdrop-filter:blur(18px)}.brand{display:flex;gap:9px;align-items:center;font-size:11px;font-weight:800;letter-spacing:.12em;text-transform:uppercase}.mark{width:10px;height:10px;border-radius:3px;background:linear-gradient(135deg,var(--ice),var(--red))}.links{display:flex;gap:6px}.links a{padding:9px 11px;border-radius:11px;color:#aeb7be;font-size:10px}.links a:hover{background:rgba(255,255,255,.06);color:#fff}.links .cta{border:1px solid rgba(255,255,255,.13);color:#fff}.scene{min-height:100svh;display:grid;place-items:center;padding:114px 22px 68px;position:relative}.wrap{width:min(1120px,100%);margin:auto}.heroGrid{display:grid;grid-template-columns:1.05fr .95fr;gap:62px;align-items:center}.eyebrow,.kicker{font-size:9px;text-transform:uppercase;letter-spacing:.22em;color:#7f8a92}.eyebrow{display:flex;align-items:center;gap:10px;margin-bottom:22px}.eyebrow:before{content:"";width:28px;height:1px;background:linear-gradient(90deg,var(--red),transparent)}h1{margin:0;font-size:clamp(56px,8.2vw,116px);line-height:.86;letter-spacing:-.065em;font-weight:650}.outline{display:block;color:transparent;-webkit-text-stroke:1px rgba(220,232,239,.55);font-weight:500}.hero p{max-width:620px;margin:27px 0 0;color:var(--muted);font-size:clamp(15px,1.7vw,20px);line-height:1.65}.actions{display:flex;gap:11px;flex-wrap:wrap;margin-top:31px}.btn{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:0 18px;border-radius:14px;border:1px solid rgba(255,255,255,.13);font-size:11px;font-weight:750;transition:.25s}.btn:hover{transform:translateY(-3px)}.primary{background:#eef3f6;color:#06080b;border-color:transparent}.secondary{color:#d7dee3;background:rgba(255,255,255,.025)}.status{display:flex;gap:26px;flex-wrap:wrap;margin-top:40px;padding-top:20px;border-top:1px solid var(--line)}.stat b{display:block;font-size:10px;margin-bottom:4px}.stat span{font-size:9px;color:#717c85}.artWrap{min-height:500px;display:grid;place-items:center;perspective:1200px}.artifact{width:min(400px,72vw);aspect-ratio:1/1.05;position:relative;transform-style:preserve-3d;transform:rotateX(63deg) rotateZ(-34deg) rotateY(8deg);transition:transform .18s ease}.slab{position:absolute;inset:16%;border:1px solid rgba(220,237,246,.25);background:linear-gradient(140deg,rgba(223,240,249,.19),rgba(255,255,255,.03) 55%,rgba(210,10,70,.08));clip-path:polygon(11% 0,86% 4%,100% 28%,89% 92%,26% 100%,0 71%);box-shadow:inset 0 0 55px rgba(255,255,255,.05),0 35px 90px rgba(0,0,0,.42)}.s2{transform:translate3d(28px,-18px,-70px) scale(.92);opacity:.42}.s3{transform:translate3d(-28px,20px,-135px) scale(.82);opacity:.2}.s4{transform:translateZ(75px) scale(.57);background:linear-gradient(145deg,rgba(255,255,255,.28),rgba(210,10,70,.12))}.core{position:absolute;inset:42%;border-radius:50%;background:#eef6fa;box-shadow:0 0 65px 20px rgba(222,239,248,.36),0 0 120px 40px rgba(210,10,70,.1);transform:translateZ(125px)}.head{display:grid;grid-template-columns:.65fr 1.35fr;gap:50px;margin-bottom:52px}.head h2,.aboutText h2{margin:0;font-size:clamp(40px,5.2vw,74px);line-height:.98;letter-spacing:-.045em;font-weight:560}.head p,.aboutText p{color:var(--muted);line-height:1.72;font-size:13px;max-width:680px}.work{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}.project{position:relative;min-height:410px;border:1px solid var(--line);border-radius:28px;overflow:hidden;background:linear-gradient(160deg,rgba(255,255,255,.055),rgba(255,255,255,.018));box-shadow:0 30px 90px rgba(0,0,0,.42);transition:.3s}.project:hover{transform:translateY(-6px);border-color:rgba(255,255,255,.18)}.large{grid-column:span 7}.small{grid-column:span 5}.project:before{content:"";position:absolute;width:64%;aspect-ratio:1;right:-7%;top:10%;border:1px solid rgba(222,238,247,.2);clip-path:polygon(18% 0,88% 10%,100% 58%,62% 100%,0 72%,7% 17%);background:linear-gradient(145deg,rgba(210,10,70,.16),rgba(218,235,245,.05));transform:rotate(17deg)}.small:before{right:-28%;top:20%;width:88%;transform:rotate(-12deg);background:linear-gradient(145deg,rgba(220,235,244,.15),rgba(255,255,255,.02))}.pc{position:absolute;left:24px;right:24px;bottom:25px;z-index:2}.tag{font-size:9px;color:#a4aeb6;text-transform:uppercase;letter-spacing:.17em;margin-bottom:10px}.project h3{font-size:clamp(30px,3.6vw,50px);margin:0 0 10px;letter-spacing:-.04em;font-weight:560}.project p{margin:0;color:#8c979f;max-width:530px;line-height:1.58;font-size:11px}.plink{display:inline-block;margin-top:18px;font-size:9px;text-transform:uppercase;letter-spacing:.15em}.services{border-top:1px solid var(--line)}.service{display:grid;grid-template-columns:64px 1fr auto;gap:22px;align-items:center;padding:24px 4px;border-bottom:1px solid var(--line)}.service .n{font-size:9px;color:#626d76}.service h3{margin:0;font-size:clamp(24px,3vw,40px);font-weight:500;letter-spacing:-.035em}.service p{margin:0;max-width:400px;text-align:right;color:#859099;font-size:10px;line-height:1.55}.aboutGrid{display:grid;grid-template-columns:.8fr 1.2fr;gap:72px;align-items:center}.portrait{min-height:520px;border-radius:32px;border:1px solid var(--line);background:linear-gradient(145deg,rgba(220,235,244,.16),rgba(210,10,70,.08));display:grid;place-items:center;position:relative;overflow:hidden;box-shadow:0 30px 90px rgba(0,0,0,.42)}.portrait:before{content:"RK";font-size:clamp(90px,16vw,190px);font-weight:700;letter-spacing:-.08em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.25)}.portrait:after{content:"Rarison Keven · Developer";position:absolute;left:18px;bottom:16px;font-size:9px;letter-spacing:.18em;text-transform:uppercase;color:#b5c0c7}.lead{font-size:clamp(18px,2.1vw,24px)!important;color:#c8d0d5!important;line-height:1.55!important}.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}.chip{padding:8px 11px;border:1px solid var(--line);border-radius:999px;font-size:9px;color:#a7b1b9}.contact{padding:clamp(30px,6vw,72px);border:1px solid var(--line);border-radius:34px;background:linear-gradient(145deg,rgba(215,232,241,.09),rgba(210,10,70,.08) 60%,rgba(255,255,255,.02));box-shadow:0 30px 90px rgba(0,0,0,.42)}.contact h2{margin:0;max-width:850px;font-size:clamp(44px,7vw,96px);line-height:.92;letter-spacing:-.06em;font-weight:560}.contact p{max-width:620px;color:#9ca8b0;line-height:1.7;font-size:12px}.socials{display:flex;gap:8px;flex-wrap:wrap;margin-top:28px}.social{padding:9px 11px;border:1px solid var(--line);border-radius:11px;font-size:9px;color:#aeb7be}footer{width:min(1120px,calc(100% - 44px));margin:auto;padding:26px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:18px;color:#626d75;font-size:8px;letter-spacing:.12em;text-transform:uppercase}.reveal{opacity:0;transform:translateY(28px);transition:.8s cubic-bezier(.2,.7,.2,1)}.show{opacity:1;transform:none}@media(max-width:900px){.links a:not(.cta){display:none}.heroGrid,.head,.aboutGrid{grid-template-columns:1fr}.artWrap{min-height:360px}.project{grid-column:1/-1}.service{grid-template-columns:42px 1fr}.service p{grid-column:2;text-align:left}.aboutGrid{gap:40px}}@media(max-width:600px){.scene{min-height:auto;padding:103px 17px 56px}.hero{min-height:100svh}.brand{font-size:9px}.cta{font-size:8px!important}h1{font-size:clamp(54px,19vw,82px)}.artWrap{min-height:310px}.artifact{width:76vw}.project{min-height:340px;border-radius:22px}.head{gap:14px}.head h2,.aboutText h2{font-size:clamp(40px,14vw,62px)}.service h3{font-size:24px}.contact{border-radius:25px}footer{flex-direction:column}}@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important;scroll-behavior:auto!important}.reveal{opacity:1;transform:none}}
-</style></head><body><div class="bg"></div><div id="progress"></div><nav><a class="brand" href="#inicio"><span class="mark"></span>Rarison Keven</a><div class="links"><a href="#projetos">Projetos</a><a href="#servicos">Serviços</a><a href="#sobre">Sobre</a><a class="cta" href="#contato">Falar comigo</a></div></nav><main>
-<section class="scene hero" id="inicio"><div class="wrap heroGrid"><div class="reveal"><div class="eyebrow">Desenvolvimento web · Brasil</div><h1>Rarison<span class="outline">Keven</span></h1><p>Crio páginas modernas, responsivas e objetivas para pessoas, projetos e pequenos negócios — com foco em visual, clareza e boa experiência no celular.</p><div class="actions"><a class="btn primary" href="#projetos">Ver projetos ↘</a><a class="btn secondary" href="https://wa.me/5595991501077" target="_blank" rel="noopener noreferrer">WhatsApp</a></div><div class="status"><div class="stat"><b>Foco atual</b><span>HTML · CSS · JavaScript</span></div><div class="stat"><b>Disponibilidade</b><span>Aberto a novos projetos</span></div></div></div><div class="artWrap reveal"><div class="artifact" id="artifact"><div class="slab s3"></div><div class="slab s2"></div><div class="slab"></div><div class="slab s4"></div><div class="core"></div></div></div></div></section>
-<section class="scene" id="projetos"><div class="wrap"><div class="head reveal"><div class="kicker">01 / Projetos selecionados</div><div><h2>Menos vitrine. Mais prova do que eu construo.</h2><p>Deixei em destaque os projetos que melhor representam meu caminho em desenvolvimento, tecnologia e experiências digitais.</p></div></div><div class="work"><article class="project large reveal"><div class="pc"><div class="tag">Web · Comunidade · Serviços</div><h3>Pale Ascendancy</h3><p>Projeto digital voltado a serviços criativos, comunidade e experiências para conectar pessoas, editores e clientes.</p><a class="plink" href="https://paleascendancy.github.io/" target="_blank" rel="noopener noreferrer">Abrir projeto →</a></div></article><article class="project small reveal"><div class="pc"><div class="tag">IA · Automação · Em desenvolvimento</div><h3>EDITH</h3><p>Assistente pessoal em evolução para estudos, organização, programação, automação e experimentos com inteligência artificial.</p><a class="plink" href="https://github.com/paleascendancy/edith-ai" target="_blank" rel="noopener noreferrer">Ver repositório →</a></div></article></div></div></section>
-<section class="scene" id="servicos"><div class="wrap"><div class="head reveal"><div class="kicker">02 / O que eu faço</div><div><h2>Serviços diretos, sem complicar o que pode ser simples.</h2><p>Concentrei o site no que realmente faz sentido para o meu trabalho hoje.</p></div></div><div class="services"><div class="service reveal"><div class="n">01</div><h3>Landing pages</h3><p>Apresentação de projetos, serviços e pequenos negócios.</p></div><div class="service reveal"><div class="n">02</div><h3>Portfólios e perfis</h3><p>Sites pessoais para mostrar trabalhos, habilidades e contatos.</p></div><div class="service reveal"><div class="n">03</div><h3>Páginas personalizadas</h3><p>Interfaces adaptadas ao estilo e ao objetivo do projeto.</p></div><div class="service reveal"><div class="n">04</div><h3>Reparos em sites</h3><p>Correções de layout, responsividade, textos e imagens.</p></div></div></div></section>
-<section class="scene" id="sobre"><div class="wrap aboutGrid"><div class="portrait reveal"></div><div class="aboutText reveal"><div class="kicker">03 / Sobre</div><h2>Construindo habilidade através de projetos reais.</h2><p class="lead">Estou desenvolvendo minha base em programação e transformando o aprendizado em projetos que posso testar, melhorar e colocar no mundo.</p><p>Meu foco atual é HTML, CSS e JavaScript. Também exploro inteligência artificial, automação e ferramentas de backend conforme meus projetos evoluem.</p><div class="chips"><span class="chip">HTML</span><span class="chip">CSS</span><span class="chip">JavaScript</span><span class="chip">GitHub</span><span class="chip">Supabase</span><span class="chip">IA</span><span class="chip">Automação</span></div></div></div></section>
-<section class="scene" id="contato"><div class="wrap"><div class="contact reveal"><div class="kicker">04 / Contato</div><h2>Tem uma ideia? Vamos transformar em página.</h2><p>Para orçamento, parceria ou conversa sobre um projeto, o caminho mais rápido é pelo WhatsApp.</p><div class="actions"><a class="btn primary" href="https://wa.me/5595991501077" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp ↗</a><a class="btn secondary" href="https://github.com/callebydev" target="_blank" rel="noopener noreferrer">Abrir GitHub</a></div><div class="socials"><a class="social" href="https://www.instagram.com/rk.dacruz" target="_blank" rel="noopener noreferrer">Instagram</a><a class="social" href="https://discord.gg/H3mnq7Nfp" target="_blank" rel="noopener noreferrer">Discord</a></div></div></div></section></main><footer><span>© 2026 Rarison Keven</span><span>Web · Technology · Building in public</span></footer><script>var p=document.getElementById("progress"),a=document.getElementById("artifact");function sc(){var m=document.documentElement.scrollHeight-innerHeight;p.style.width=(m?scrollY/m*100:0)+"%"}addEventListener("scroll",sc,{passive:true});sc();var io=new IntersectionObserver(function(es){es.forEach(function(e){if(e.isIntersecting){e.target.classList.add("show");io.unobserve(e.target)}})},{threshold:.12});document.querySelectorAll(".reveal").forEach(function(el){io.observe(el)});if(a&&!matchMedia("(prefers-reduced-motion: reduce)").matches){var h=document.querySelector(".hero");h.addEventListener("pointermove",function(e){var r=h.getBoundingClientRect(),x=(e.clientX-r.left)/r.width-.5,y=(e.clientY-r.top)/r.height-.5;a.style.transform="rotateX("+(63-y*8)+"deg) rotateZ("+(-34+x*6)+"deg) rotateY("+(8+x*11)+"deg)"});h.addEventListener("pointerleave",function(){a.style.transform="rotateX(63deg) rotateZ(-34deg) rotateY(8deg)"})}</script></body></html>
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="theme-color" content="#06080b">
+<meta name="description" content="Rarison Keven — desenvolvimento web, interfaces, portfólios, landing pages e projetos digitais.">
+<title>Rarison Keven — Web & Technology</title>
+<style>
+:root{
+  --bg:#06080b;
+  --bg-2:#0a0d12;
+  --surface:rgba(255,255,255,.045);
+  --surface-2:rgba(255,255,255,.025);
+  --line:rgba(255,255,255,.105);
+  --line-strong:rgba(255,255,255,.18);
+  --text:#f4f7f8;
+  --muted:#9aa6ae;
+  --muted-2:#6f7b84;
+  --ice:#dce9ef;
+  --red:#d20a46;
+  --red-soft:rgba(210,10,70,.16);
+
+  --content:1180px;
+  --radius-xs:10px;
+  --radius-sm:16px;
+  --radius-md:24px;
+  --radius-lg:34px;
+
+  --s1:8px;
+  --s2:12px;
+  --s3:18px;
+  --s4:26px;
+  --s5:40px;
+  --s6:64px;
+  --s7:96px;
+  --s8:144px;
+
+  --ease:cubic-bezier(.2,.7,.2,1);
+  --fast:180ms;
+  --mid:480ms;
+  --slow:900ms;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth;background:var(--bg)}
+body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;overflow-x:hidden}
+a{color:inherit;text-decoration:none}
+button{font:inherit}
+::selection{background:var(--red);color:white}
+
+.site-bg{position:fixed;inset:0;z-index:-4;background:
+radial-gradient(800px 520px at 84% 0%,rgba(220,233,239,.105),transparent 70%),
+radial-gradient(760px 560px at 8% 44%,rgba(210,10,70,.09),transparent 74%),
+linear-gradient(180deg,#090c10 0%,#05070a 52%,#07090c 100%)}
+.site-bg:before{content:"";position:absolute;inset:0;opacity:.16;background-image:
+linear-gradient(rgba(255,255,255,.035) 1px,transparent 1px),
+linear-gradient(90deg,rgba(255,255,255,.035) 1px,transparent 1px);
+background-size:64px 64px;mask-image:linear-gradient(to bottom,transparent,black 16%,black 82%,transparent)}
+.site-bg:after{content:"";position:absolute;inset:0;opacity:.08;background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 180 180' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.88' numOctaves='3'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E")}
+
+#progress{position:fixed;left:0;top:0;width:0;height:2px;z-index:500;background:linear-gradient(90deg,var(--ice),var(--red))}
+
+.nav{
+  position:fixed;z-index:300;top:14px;left:50%;transform:translateX(-50%);
+  width:min(var(--content),calc(100% - 22px));
+  min-height:58px;padding:10px 11px 10px 16px;
+  display:flex;align-items:center;justify-content:space-between;gap:16px;
+  border:1px solid rgba(255,255,255,.08);border-radius:18px;
+  background:rgba(6,8,11,.66);backdrop-filter:blur(18px)
+}
+.brand{display:flex;align-items:center;gap:10px;font-size:11px;font-weight:850;letter-spacing:.12em;text-transform:uppercase}
+.brand-mark{width:11px;height:11px;border-radius:3px;background:linear-gradient(135deg,var(--ice),var(--red));box-shadow:0 0 20px rgba(220,233,239,.18)}
+.nav-links{display:flex;align-items:center;gap:5px}
+.nav-links a{padding:9px 11px;border-radius:11px;color:#aeb8bf;font-size:10px;transition:var(--fast) ease}
+.nav-links a:hover{background:rgba(255,255,255,.055);color:#fff}
+.nav-links .nav-cta{border:1px solid rgba(255,255,255,.13);color:#fff}
+
+.shell{width:min(var(--content),calc(100% - 40px));margin:auto}
+.scene{min-height:100svh;display:grid;align-items:center;padding:120px 0 78px;position:relative}
+.scene.compact{min-height:auto;padding:110px 0}
+.scene-label{font-size:9px;line-height:1;text-transform:uppercase;letter-spacing:.24em;color:#7c8991}
+.rule{height:1px;background:var(--line);width:100%}
+
+.hero-grid{display:grid;grid-template-columns:1.08fr .92fr;gap:70px;align-items:center}
+.hero-copy{max-width:680px}
+.hero-kicker{display:flex;align-items:center;gap:12px;color:#8c98a0;text-transform:uppercase;font-size:9px;letter-spacing:.24em;margin-bottom:24px}
+.hero-kicker:before{content:"";width:34px;height:1px;background:linear-gradient(90deg,var(--red),transparent)}
+h1{margin:0;font-size:clamp(58px,8.6vw,126px);line-height:.84;letter-spacing:-.07em;font-weight:640}
+h1 .ghost{display:block;color:transparent;-webkit-text-stroke:1px rgba(220,233,239,.52);font-weight:500}
+.hero-lead{max-width:620px;margin:28px 0 0;color:var(--muted);font-size:clamp(15px,1.7vw,20px);line-height:1.7}
+.hero-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:32px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:0 18px;border-radius:14px;border:1px solid var(--line-strong);font-size:11px;font-weight:800;transition:transform var(--fast) ease,background var(--fast) ease,border var(--fast) ease}
+.btn:hover{transform:translateY(-3px)}
+.btn.primary{background:var(--ice);color:#080a0d;border-color:transparent}
+.btn.secondary{background:rgba(255,255,255,.025)}
+.hero-meta{display:flex;flex-wrap:wrap;gap:28px;margin-top:44px;padding-top:22px;border-top:1px solid var(--line)}
+.meta b{display:block;font-size:10px;margin-bottom:5px}
+.meta span{display:block;font-size:9px;color:var(--muted-2)}
+
+.art-stage{min-height:520px;display:grid;place-items:center;perspective:1200px}
+.artifact{width:min(420px,74vw);aspect-ratio:1/1;position:relative;transform-style:preserve-3d;transform:rotateX(62deg) rotateZ(-34deg) rotateY(7deg);transition:transform var(--fast) ease-out}
+.plate{position:absolute;inset:15%;clip-path:polygon(12% 0,86% 6%,100% 29%,91% 91%,28% 100%,0 72%);border:1px solid rgba(220,236,244,.24);background:linear-gradient(145deg,rgba(222,239,248,.18),rgba(255,255,255,.025) 54%,rgba(210,10,70,.08));box-shadow:inset 0 0 50px rgba(255,255,255,.045),0 36px 100px rgba(0,0,0,.4)}
+.p2{transform:translate3d(28px,-18px,-70px) scale(.92);opacity:.42}.p3{transform:translate3d(-30px,18px,-140px) scale(.82);opacity:.2}.p4{transform:translateZ(82px) scale(.56);background:linear-gradient(145deg,rgba(255,255,255,.25),rgba(210,10,70,.1))}
+.core{position:absolute;inset:43%;border-radius:50%;background:#eef6fa;box-shadow:0 0 60px 18px rgba(222,239,248,.34),0 0 120px 42px rgba(210,10,70,.09);transform:translateZ(135px)}
+.orbit{position:absolute;inset:8%;border:1px solid rgba(255,255,255,.12);border-radius:50%;transform:rotateX(72deg) translateZ(50px);animation:orbit 16s linear infinite}
+.orbit:after{content:"";position:absolute;top:-4px;left:50%;width:7px;height:7px;border-radius:50%;background:var(--red);box-shadow:0 0 16px var(--red)}
+@keyframes orbit{to{transform:rotateX(72deg) rotateZ(360deg) translateZ(50px)}}
+
+.split-head{display:grid;grid-template-columns:.58fr 1.42fr;gap:54px;margin-bottom:56px;align-items:start}
+.split-head h2,.about-copy h2,.contact h2{margin:0;font-size:clamp(42px,5.6vw,78px);line-height:.96;letter-spacing:-.055em;font-weight:560}
+.split-head p,.about-copy p,.contact p{color:var(--muted);line-height:1.72;font-size:13px;max-width:720px}
+
+.projects{display:grid;grid-template-columns:repeat(12,1fr);gap:16px}
+.project{position:relative;min-height:480px;border:1px solid var(--line);border-radius:var(--radius-lg);overflow:hidden;background:linear-gradient(155deg,rgba(255,255,255,.05),rgba(255,255,255,.018));box-shadow:0 28px 90px rgba(0,0,0,.4);transition:transform var(--mid) var(--ease),border-color var(--mid) var(--ease)}
+.project:hover{transform:translateY(-6px);border-color:var(--line-strong)}
+.project.large{grid-column:span 7}.project.small{grid-column:span 5}
+.project-visual{position:absolute;inset:0;overflow:hidden}
+.project-visual:before{content:"";position:absolute;width:62%;aspect-ratio:1;right:-5%;top:9%;clip-path:polygon(16% 0,88% 8%,100% 56%,63% 100%,0 74%,6% 18%);border:1px solid rgba(220,237,246,.18);background:linear-gradient(145deg,rgba(210,10,70,.15),rgba(220,237,246,.05));transform:rotate(16deg)}
+.project.small .project-visual:before{width:86%;right:-27%;top:20%;transform:rotate(-13deg);background:linear-gradient(145deg,rgba(220,237,246,.12),rgba(255,255,255,.02))}
+.project-visual:after{content:"";position:absolute;width:210px;height:210px;border-radius:50%;filter:blur(60px);right:4%;top:14%;background:rgba(210,10,70,.12)}
+.project-info{position:absolute;left:26px;right:26px;bottom:26px;z-index:3}
+.project-index{position:absolute;left:26px;top:24px;font-size:8px;letter-spacing:.2em;color:#707d85}
+.tag{font-size:9px;text-transform:uppercase;letter-spacing:.17em;color:#a7b1b7;margin-bottom:11px}
+.project h3{margin:0 0 10px;font-size:clamp(34px,4vw,56px);letter-spacing:-.045em;font-weight:560}
+.project p{margin:0;max-width:560px;color:#909ba3;font-size:11px;line-height:1.62}
+.project-link{display:inline-block;margin-top:20px;font-size:9px;text-transform:uppercase;letter-spacing:.16em}
+
+.tech-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px}
+.tech-card{min-height:250px;padding:24px;border:1px solid var(--line);border-radius:var(--radius-md);background:linear-gradient(160deg,rgba(255,255,255,.045),rgba(255,255,255,.015));position:relative;overflow:hidden}
+.tech-card:after{content:"";position:absolute;width:160px;height:160px;border-radius:50%;right:-75px;bottom:-75px;border:1px solid rgba(255,255,255,.08)}
+.tech-card .n{font-size:8px;color:#69757d;letter-spacing:.2em}
+.tech-card h3{font-size:26px;letter-spacing:-.035em;font-weight:540;margin:54px 0 10px}
+.tech-card p{font-size:11px;line-height:1.65;color:#87939b;margin:0}
+.tech-list{display:flex;flex-wrap:wrap;gap:7px;margin-top:18px}
+.pill{border:1px solid var(--line);border-radius:999px;padding:7px 9px;font-size:8px;color:#a7b1b8}
+
+.services{border-top:1px solid var(--line)}
+.service{display:grid;grid-template-columns:70px 1fr minmax(220px,420px);gap:24px;align-items:center;padding:26px 4px;border-bottom:1px solid var(--line);transition:background var(--fast) ease,padding var(--fast) ease}
+.service:hover{padding-left:12px;background:linear-gradient(90deg,rgba(255,255,255,.025),transparent)}
+.service .n{font-size:8px;letter-spacing:.2em;color:#67737b}
+.service h3{font-size:clamp(26px,3vw,42px);font-weight:500;letter-spacing:-.04em;margin:0}
+.service p{margin:0;text-align:right;color:#859099;font-size:10px;line-height:1.6}
+
+.about-grid{display:grid;grid-template-columns:.85fr 1.15fr;gap:74px;align-items:center}
+.about-panel{min-height:580px;border:1px solid var(--line);border-radius:var(--radius-lg);background:
+linear-gradient(145deg,rgba(220,237,246,.1),rgba(210,10,70,.075) 58%,rgba(255,255,255,.015));position:relative;overflow:hidden;display:grid;place-items:center}
+.about-panel:before{content:"RK";font-size:clamp(110px,16vw,210px);font-weight:760;letter-spacing:-.09em;color:transparent;-webkit-text-stroke:1px rgba(255,255,255,.22)}
+.about-panel:after{content:"RARISON KEVEN / WEB & TECHNOLOGY";position:absolute;left:20px;bottom:18px;color:#b0bac1;font-size:8px;letter-spacing:.18em}
+.about-copy .lead{font-size:clamp(19px,2.2vw,26px);line-height:1.55;color:#c7d0d5;margin:28px 0 14px}
+.about-copy .small{font-size:12px;line-height:1.75;color:#8e99a1}
+.skills{display:flex;flex-wrap:wrap;gap:8px;margin-top:28px}
+.skill{padding:8px 10px;border-radius:999px;border:1px solid var(--line);font-size:8px;letter-spacing:.08em;color:#a8b2b9}
+
+.contact{position:relative;overflow:hidden;padding:clamp(34px,6vw,76px);border:1px solid var(--line);border-radius:var(--radius-lg);background:linear-gradient(145deg,rgba(220,237,246,.075),rgba(210,10,70,.075) 62%,rgba(255,255,255,.018));box-shadow:0 30px 100px rgba(0,0,0,.36)}
+.contact:before{content:"";position:absolute;width:460px;height:460px;border-radius:50%;right:-210px;top:-240px;border:1px solid rgba(255,255,255,.1)}
+.contact h2{position:relative;max-width:920px;font-size:clamp(46px,7.4vw,104px)}
+.contact p{position:relative;max-width:620px}
+.contact-actions{position:relative;display:flex;flex-wrap:wrap;gap:10px;margin-top:28px}
+.socials{position:relative;display:flex;flex-wrap:wrap;gap:8px;margin-top:18px}
+.social{padding:8px 10px;border:1px solid var(--line);border-radius:10px;font-size:8px;letter-spacing:.09em;color:#a8b3ba}
+
+footer{width:min(var(--content),calc(100% - 40px));margin:auto;padding:28px 0 36px;border-top:1px solid var(--line);display:flex;justify-content:space-between;gap:20px;color:#66727a;font-size:8px;letter-spacing:.14em;text-transform:uppercase}
+
+.reveal{opacity:0;transform:translateY(28px);transition:opacity var(--slow) var(--ease),transform var(--slow) var(--ease)}
+.reveal.show{opacity:1;transform:none}
+
+@media(max-width:940px){
+  .nav-links a:not(.nav-cta){display:none}
+  .hero-grid,.split-head,.about-grid{grid-template-columns:1fr}
+  .hero-grid{gap:10px}
+  .art-stage{min-height:390px}
+  .project{grid-column:1/-1!important}
+  .tech-grid{grid-template-columns:1fr}
+  .service{grid-template-columns:46px 1fr}
+  .service p{grid-column:2;text-align:left}
+  .about-grid{gap:42px}
+}
+@media(max-width:620px){
+  .shell{width:calc(100% - 30px)}
+  .scene{min-height:auto;padding:104px 0 62px}
+  .scene.hero{min-height:100svh}
+  .nav{top:9px;width:calc(100% - 18px)}
+  .brand{font-size:9px}
+  .nav-cta{font-size:8px!important}
+  h1{font-size:clamp(56px,19vw,84px)}
+  .hero-lead{font-size:14px}
+  .art-stage{min-height:315px}
+  .artifact{width:76vw}
+  .split-head{gap:14px}
+  .split-head h2,.about-copy h2{font-size:clamp(42px,14vw,64px)}
+  .project{min-height:370px;border-radius:24px}
+  .tech-card{min-height:220px}
+  .service h3{font-size:25px}
+  .contact{border-radius:26px}
+  footer{width:calc(100% - 30px);flex-direction:column}
+}
+@media(prefers-reduced-motion:reduce){
+  *{animation:none!important;transition:none!important;scroll-behavior:auto!important}
+  .reveal{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<div class="site-bg"></div><div id="progress"></div>
+
+<nav class="nav">
+  <a class="brand" href="#inicio"><span class="brand-mark"></span>Rarison Keven</a>
+  <div class="nav-links">
+    <a href="#projetos">Projetos</a>
+    <a href="#stack">Tecnologias</a>
+    <a href="#servicos">Serviços</a>
+    <a href="#sobre">Sobre</a>
+    <a class="nav-cta" href="#contato">Falar comigo</a>
+  </div>
+</nav>
+
+<main>
+<section class="scene hero" id="inicio">
+  <div class="shell hero-grid">
+    <div class="hero-copy reveal">
+      <div class="hero-kicker">Web development · technology · Brazil</div>
+      <h1>Rarison<span class="ghost">Keven</span></h1>
+      <p class="hero-lead">Crio páginas modernas, responsivas e objetivas para pessoas, projetos e pequenos negócios — unindo identidade visual, clareza e boa experiência no celular.</p>
+      <div class="hero-actions">
+        <a class="btn primary" href="#projetos">Explorar projetos ↘</a>
+        <a class="btn secondary" href="https://wa.me/5595991501077" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a>
+      </div>
+      <div class="hero-meta">
+        <div class="meta"><b>Base atual</b><span>HTML · CSS · JavaScript</span></div>
+        <div class="meta"><b>Explorando</b><span>IA · Supabase · Automação</span></div>
+        <div class="meta"><b>Status</b><span>Disponível para projetos</span></div>
+      </div>
+    </div>
+    <div class="art-stage reveal">
+      <div class="artifact" id="artifact">
+        <div class="plate p3"></div><div class="plate p2"></div><div class="plate"></div><div class="plate p4"></div><div class="core"></div><div class="orbit"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="projetos">
+  <div class="shell">
+    <div class="split-head reveal">
+      <div class="scene-label">01 / Projetos selecionados</div>
+      <div><h2>Projetos que mostram para onde estou evoluindo.</h2><p>Em vez de listar tudo, deixei em destaque os projetos que melhor representam meu trabalho, aprendizado e direção em tecnologia.</p></div>
+    </div>
+    <div class="projects">
+      <article class="project large reveal">
+        <div class="project-visual"></div><div class="project-index">PROJECT / 01</div>
+        <div class="project-info"><div class="tag">Web · Comunidade · Serviços</div><h3>Pale Ascendancy</h3><p>Ecossistema digital voltado a serviços criativos, comunidade e experiências para aproximar clientes, editores e projetos.</p><a class="project-link" href="https://paleascendancy.github.io/" target="_blank" rel="noopener noreferrer">Abrir projeto →</a></div>
+      </article>
+      <article class="project small reveal">
+        <div class="project-visual"></div><div class="project-index">PROJECT / 02</div>
+        <div class="project-info"><div class="tag">IA · Automação · Em evolução</div><h3>EDITH</h3><p>Assistente pessoal em desenvolvimento para estudos, organização, programação, automação e experimentos com inteligência artificial.</p><a class="project-link" href="https://github.com/paleascendancy/edith-ai" target="_blank" rel="noopener noreferrer">Ver repositório →</a></div>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="scene compact" id="stack">
+  <div class="shell">
+    <div class="split-head reveal">
+      <div class="scene-label">02 / Sistema técnico</div>
+      <div><h2>Uma base simples agora. Espaço para crescer depois.</h2><p>Meu stack está organizado entre fundamentos, ferramentas e áreas que estou explorando. Assim o site mostra o que já uso sem fingir domínio do que ainda estou aprendendo.</p></div>
+    </div>
+    <div class="tech-grid">
+      <article class="tech-card reveal"><div class="n">A / FOUNDATION</div><h3>Front-end</h3><p>Onde construo a interface, responsividade e experiência visual dos meus projetos.</p><div class="tech-list"><span class="pill">HTML</span><span class="pill">CSS</span><span class="pill">JavaScript</span></div></article>
+      <article class="tech-card reveal"><div class="n">B / TOOLS</div><h3>Workflow</h3><p>Ferramentas que uso para versionar, publicar e organizar o desenvolvimento.</p><div class="tech-list"><span class="pill">GitHub</span><span class="pill">GitHub Pages</span><span class="pill">Supabase</span></div></article>
+      <article class="tech-card reveal"><div class="n">C / EXPLORATION</div><h3>Próxima camada</h3><p>Áreas que estou incorporando gradualmente conforme meus projetos ficam mais complexos.</p><div class="tech-list"><span class="pill">IA</span><span class="pill">Automação</span><span class="pill">APIs</span></div></article>
+    </div>
+  </div>
+</section>
+
+<section class="scene compact" id="servicos">
+  <div class="shell">
+    <div class="split-head reveal">
+      <div class="scene-label">03 / Serviços</div>
+      <div><h2>Direto ao que realmente posso entregar hoje.</h2><p>Sem uma lista enorme de promessas. Estes são os tipos de trabalho que fazem sentido para meu nível atual e para a qualidade que quero entregar.</p></div>
+    </div>
+    <div class="services">
+      <div class="service reveal"><div class="n">01</div><h3>Landing pages</h3><p>Apresentação de projetos, serviços, produtos e pequenos negócios.</p></div>
+      <div class="service reveal"><div class="n">02</div><h3>Portfólios e perfis</h3><p>Sites pessoais para organizar trabalhos, habilidades, projetos e contatos.</p></div>
+      <div class="service reveal"><div class="n">03</div><h3>Páginas personalizadas</h3><p>Interfaces adaptadas à identidade e ao objetivo de cada projeto.</p></div>
+      <div class="service reveal"><div class="n">04</div><h3>Reparos em sites</h3><p>Ajustes de layout, responsividade, textos, imagens e detalhes visuais.</p></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene" id="sobre">
+  <div class="shell about-grid">
+    <div class="about-panel reveal"></div>
+    <div class="about-copy reveal">
+      <div class="scene-label">04 / Sobre</div>
+      <h2>Aprender construindo é a base do meu processo.</h2>
+      <p class="lead">Estou desenvolvendo minha base em programação através de projetos reais: construo, encontro problemas, corrijo, publico e evoluo.</p>
+      <p class="small">Meu foco atual está em desenvolvimento web. Ao mesmo tempo, exploro inteligência artificial, automação e backend conforme projetos como EDITH e Pale Ascendancy exigem novas capacidades.</p>
+      <div class="skills"><span class="skill">HTML</span><span class="skill">CSS</span><span class="skill">JavaScript</span><span class="skill">GitHub</span><span class="skill">Supabase</span><span class="skill">IA</span><span class="skill">Automação</span></div>
+    </div>
+  </div>
+</section>
+
+<section class="scene compact" id="contato">
+  <div class="shell">
+    <div class="contact reveal">
+      <div class="scene-label">05 / Contato</div>
+      <h2>Tem uma ideia? Vamos transformar em algo que exista.</h2>
+      <p>Para orçamento, parceria ou conversa sobre um projeto, o caminho mais rápido é pelo WhatsApp. Você também pode acompanhar meus projetos pelo GitHub.</p>
+      <div class="contact-actions">
+        <a class="btn primary" href="https://wa.me/5595991501077" target="_blank" rel="noopener noreferrer">Chamar no WhatsApp ↗</a>
+        <a class="btn secondary" href="https://github.com/callebydev" target="_blank" rel="noopener noreferrer">Abrir GitHub ↗</a>
+      </div>
+      <div class="socials">
+        <a class="social" href="https://www.instagram.com/rk.dacruz" target="_blank" rel="noopener noreferrer">Instagram</a>
+        <a class="social" href="https://discord.gg/H3mnq7Nfp" target="_blank" rel="noopener noreferrer">Discord</a>
+      </div>
+    </div>
+  </div>
+</section>
+</main>
+
+<footer><span>© 2026 Rarison Keven</span><span>Dark technological editorial / built for the web</span></footer>
+
+<script>
+const progress=document.getElementById("progress");
+const artifact=document.getElementById("artifact");
+function updateProgress(){const max=document.documentElement.scrollHeight-innerHeight;progress.style.width=(max?scrollY/max*100:0)+"%"}
+addEventListener("scroll",updateProgress,{passive:true});updateProgress();
+
+const observer=new IntersectionObserver(entries=>entries.forEach(entry=>{
+  if(entry.isIntersecting){entry.target.classList.add("show");observer.unobserve(entry.target)}
+}),{threshold:.12});
+document.querySelectorAll(".reveal").forEach(el=>observer.observe(el));
+
+if(artifact&&!matchMedia("(prefers-reduced-motion: reduce)").matches){
+  const hero=document.querySelector(".hero");
+  hero.addEventListener("pointermove",e=>{
+    const r=hero.getBoundingClientRect();
+    const x=(e.clientX-r.left)/r.width-.5;
+    const y=(e.clientY-r.top)/r.height-.5;
+    artifact.style.transform=`rotateX(${62-y*8}deg) rotateZ(${-34+x*6}deg) rotateY(${7+x*11}deg)`;
+  });
+  hero.addEventListener("pointerleave",()=>artifact.style.transform="rotateX(62deg) rotateZ(-34deg) rotateY(7deg)");
+}
+</script>
+</body>
+</html>
